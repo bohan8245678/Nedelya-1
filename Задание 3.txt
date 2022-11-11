@@ -1,0 +1,31 @@
+package comp;
+ 
+ 
+public class Test {
+ 
+    public static void main(String[] args) {
+        Hard hard = new Hard();
+        CD cd = new CD();
+ 
+        Ram ram = new Ram();
+ 
+        Computer computer = new Computer(hard, cd, ram);
+ 
+    }
+ 
+    private static class Hard {
+    }
+ 
+    private static class CD {
+    }
+ 
+    private static class Ram {
+    }
+ 
+    private static class Computer {
+ 
+        public Computer(Hard hard, CD cd, Ram ram) {
+            System.out.println("Объект компьютер готов");
+        }
+    }
+}

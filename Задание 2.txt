@@ -1,0 +1,50 @@
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+ 
+public class Helper {
+ 
+    public static void main(String[] args) {
+        Random rndGen = new Random();
+        List<Product> products = Stream
+                .generate(() -> new Product("" + rndGen.nextInt(), rndGen.nextInt(150),rndGen.nextInt(90)))
+                .limit(32)
+                .sorted(Comparator.comparing(Product::getName))
+                .collect(Collectors.toList());
+        products.stream().forEach(System.out::println); 
+        products.stream().filter(product -> product.getPrice() < 50).forEach(System.out::println);
+        products.stream().filter(product -> product.getValidDays() < 14).forEach(System.out::println);
+    }
+}
+class Product {
+    private String name;
+    private double price;
+    private int validDays;
+ 
+    Product(String name, double price, int validDays) {
+        this.name = name;
+        this.price = price;
+        this.validDays = validDays;
+    }
+ 
+    public String getName() {
+        return name;
+    }
+ 
+    public double getPrice() {
+        return price;
+    }
+ 
+    public int getValidDays() {
+        return validDays;
+    }
+ 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", validDays=" + validDays +
+                '}';
+    }
+}
